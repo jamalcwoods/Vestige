@@ -44,10 +44,8 @@ let scoreRanks = [
 async function drawCards(){
     let url = `https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=5`;
     const response = await fetch(url); // Fetch 5 cards from the deck
-    console.log(response);
 
     const data = await response.json();
-    console.log(data);
 
     cards = [] // Reset the cards array
 
@@ -65,10 +63,8 @@ async function drawCards(){
 async function createDeck(callback){
     let url = "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1"
     const response = await fetch(url); // Request a new shuffled deck
-    console.log(response);
 
     const data = await response.json();
-    console.log(data);
 
     deckID = data.deck_id; // Store the deck ID for future draws
 
@@ -91,17 +87,35 @@ function scoreCards(){
 
     // Find the highest value card in the hand
     let highestValue = cards[0].value
+    let lastCard = `${cards[0].suit} ${cards[0].value} was scored`
     for(i = 0; i < cards.length; i++){
         if(cardRanks.indexOf(cards[i].value) > cardRanks.indexOf(highestValue)){
             highestValue = cards[i].value
+            lastCard = `${cards[i].suit} ${cards[i].value} was scored`
         }
     }
 
     // Add the score for the highest card to the total score
     score += scoreRanks[cardRanks.indexOf(highestValue)]
-    console.log(highestValue)
+
+    // Highscore logic using localStorage
+    let highscore = localStorage.getItem('highscore');
+    if (highscore !== null) {
+        highscore = parseInt(highscore, 10);
+        if (score > highscore) {
+            localStorage.setItem('highscore', score);
+        }
+    } else {
+        localStorage.setItem('highscore', score);
+        highscore = score
+    }
+    console.log("Highscore:" + highscore)
+    // TODO - Find a way to display this highscore variable on the webpage
+    // Hint - Create an element in the html to display it and set it's innerHTML here
+
     document.getElementById("score").innerHTML = "Score: " + score;
     drawCards(); // Draw a new hand
+    document.getElementById("last-card").innerHTML = lastCard
 }
 
 
