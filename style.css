@@ -1,0 +1,39 @@
+
+/* Main page layout: center content vertically and horizontally, set background color */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: darkgreen;
+}
+
+
+/* Game title styling */
+h1 {
+    color: white;
+    background-color: red;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+
+/* Layout for the control buttons */
+#controls {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    margin-bottom: 30px;
+}
+
+
+/* Button appearance */
+button {
+    border-radius: 5px;
+    padding: 15px;
+}
+
+
+/* Button hover effect */
+button:hover {
+    background-color: chartreuse;
+}

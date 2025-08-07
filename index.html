@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Character encoding and responsive design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vestige</title>
+    <!-- Main game logic (deferred so DOM loads first) -->
+    <script defer src="script.js"></script>
+    <!-- p5.js library for drawing cards -->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.8/lib/p5.min.js"></script>
+    <!-- Custom drawing code for cards and slots -->
+    <script src="sketch.js"></script>
+    <!-- Stylesheet for page layout and appearance -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Game title -->
+    <h1>Vestige</h1>
+    <!-- Control buttons for drawing and scoring -->
+    <div id="controls">
+        <button id = "draw-button">Draw</button>
+        <button id = "score-button">Score</button>
+    </div>
+    <!-- Display for remaining cards in the deck -->
+    <h2 id="remainingCards"></h2>
+    <!-- Display for current score -->
+    <h2 id="score">Score: 0</h2>
+</body>
+</html>
